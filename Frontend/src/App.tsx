@@ -1,8 +1,10 @@
 import { useEffect, useMemo, useState } from 'react';
-import { createHold, fetchInventory, releaseHold } from './api';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchInventory } from './features/inventorySlice';
+import { createHold, releaseHold } from './features/holdSlice';
+import { AppDispatch, RootState } from './store';
 import {
   CreateHoldRequest,
-  HoldResponse,
   InventoryItemResponse,
 } from './types';
 import ActiveHolds from './components/ActiveHolds';
@@ -11,39 +13,29 @@ import Dashboard from './components/Dashboard';
 
 function App() {
   const [page, setPage] = useState<'dashboard' | 'hold'>('dashboard');
-  const [inventory, setInventory] = useState<InventoryItemResponse[]>([]);
-  const [holds, setHolds] = useState<HoldResponse[]>([]);
   const [selectedProduct, setSelectedProduct] = useState('');
   const [quantity, setQuantity] = useState(1);
   const [customerId, setCustomerId] = useState('guest');
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const [refreshSignal, setRefreshSignal] = useState(0);
+
+  const dispatch = useDispatch<AppDispatch>();
+  const inventory = useSelector((state: RootState) => state.inventory.items);
+  const inventoryLoading = useSelector((state: RootState) => state.inventory.loading);
+  const inventoryError = useSelector((state: RootState) => state.inventory.error);
+  const holds = useSelector((state: RootState) => state.hold.items);
+  const holdLoading = useSelector((state: RootState) => state.hold.loading);
+  const holdError = useSelector((state: RootState) => state.hold.error);
 
   const availableProducts = useMemo(() => inventory, [inventory]);
+  const loading = inventoryLoading || holdLoading;
+  const error = holdError || inventoryError;
 
   useEffect(() => {
-    void refreshData();
-  }, [refreshSignal]);
-
-  const refreshData = async () => {
-    setError(null);
-    try {
-      setLoading(true);
-      const items = await fetchInventory();
-      setInventory(items);
-      setHolds((current) => current.filter((hold) => hold.status === 'Active'));
-    } catch (err) {
-      setError((err as Error).message);
-    } finally {
-      setLoading(false);
-    }
-  };
+    void dispatch(fetchInventory());
+  }, [dispatch]);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!selectedProduct) {
-      setError('Choose a product first.');
       return;
     }
 
@@ -54,28 +46,19 @@ function App() {
     };
 
     try {
-      setLoading(true);
-      const hold = await createHold(request);
-      setHolds((current) => [hold, ...current]);
-      await refreshData();
-      setError(null);
-    } catch (err) {
-      setError((err as Error).message);
-    } finally {
-      setLoading(false);
+      await dispatch(createHold(request)).unwrap();
+      await dispatch(fetchInventory()).unwrap();
+    } catch {
+      // Error state is handled by Redux.
     }
   };
 
   const handleRelease = async (holdId: string) => {
     try {
-      setLoading(true);
-      await releaseHold(holdId);
-      setHolds((current) => current.filter((hold) => hold.holdId !== holdId));
-      await refreshData();
-    } catch (err) {
-      setError((err as Error).message);
-    } finally {
-      setLoading(false);
+      await dispatch(releaseHold(holdId)).unwrap();
+      await dispatch(fetchInventory()).unwrap();
+    } catch {
+      // Error state is handled by Redux.
     }
   };
 
@@ -97,7 +80,7 @@ function App() {
       {page === 'dashboard' ? (
         <Dashboard inventory={inventory} loading={loading} />
       ) : (
-        <div className="grid">
+        <div className="grid hold-grid">
           <CreateHold
             availableProducts={availableProducts}
             customerId={customerId}
