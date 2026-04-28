@@ -1,0 +1,60 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Backend", "Backend", "{1AE8ACA6-933B-BF2A-3671-3E2EAC007D16}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{0F9113EE-888A-26D2-68B0-4A7D0A2A8745}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventoryHold.Contracts", "Backend\src\InventoryHold.Contracts\InventoryHold.Contracts.csproj", "{1B3CB893-6F49-360A-33D5-B4E49CD03D7A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventoryHold.Domain", "Backend\src\InventoryHold.Domain\InventoryHold.Domain.csproj", "{1BDC10FA-2720-5DD6-CA72-0AC476D29EBF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventoryHold.Infrastructure", "Backend\src\InventoryHold.Infrastructure\InventoryHold.Infrastructure.csproj", "{4275AB67-C933-E246-F239-869F6BDC9D81}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventoryHold.UnitTests", "Backend\src\InventoryHold.UnitTests\InventoryHold.UnitTests.csproj", "{0C2A6AF1-7FA2-95D0-8D37-881CC8086CA1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventoryHold.WebApi", "Backend\src\InventoryHold.WebApi\InventoryHold.WebApi.csproj", "{8ECE1270-C51F-C1D9-E3E5-DE278168457F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1B3CB893-6F49-360A-33D5-B4E49CD03D7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B3CB893-6F49-360A-33D5-B4E49CD03D7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B3CB893-6F49-360A-33D5-B4E49CD03D7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B3CB893-6F49-360A-33D5-B4E49CD03D7A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1BDC10FA-2720-5DD6-CA72-0AC476D29EBF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1BDC10FA-2720-5DD6-CA72-0AC476D29EBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1BDC10FA-2720-5DD6-CA72-0AC476D29EBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1BDC10FA-2720-5DD6-CA72-0AC476D29EBF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4275AB67-C933-E246-F239-869F6BDC9D81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4275AB67-C933-E246-F239-869F6BDC9D81}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4275AB67-C933-E246-F239-869F6BDC9D81}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4275AB67-C933-E246-F239-869F6BDC9D81}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C2A6AF1-7FA2-95D0-8D37-881CC8086CA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C2A6AF1-7FA2-95D0-8D37-881CC8086CA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C2A6AF1-7FA2-95D0-8D37-881CC8086CA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C2A6AF1-7FA2-95D0-8D37-881CC8086CA1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8ECE1270-C51F-C1D9-E3E5-DE278168457F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8ECE1270-C51F-C1D9-E3E5-DE278168457F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8ECE1270-C51F-C1D9-E3E5-DE278168457F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8ECE1270-C51F-C1D9-E3E5-DE278168457F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0F9113EE-888A-26D2-68B0-4A7D0A2A8745} = {1AE8ACA6-933B-BF2A-3671-3E2EAC007D16}
+		{1B3CB893-6F49-360A-33D5-B4E49CD03D7A} = {0F9113EE-888A-26D2-68B0-4A7D0A2A8745}
+		{1BDC10FA-2720-5DD6-CA72-0AC476D29EBF} = {0F9113EE-888A-26D2-68B0-4A7D0A2A8745}
+		{4275AB67-C933-E246-F239-869F6BDC9D81} = {0F9113EE-888A-26D2-68B0-4A7D0A2A8745}
+		{0C2A6AF1-7FA2-95D0-8D37-881CC8086CA1} = {0F9113EE-888A-26D2-68B0-4A7D0A2A8745}
+		{8ECE1270-C51F-C1D9-E3E5-DE278168457F} = {0F9113EE-888A-26D2-68B0-4A7D0A2A8745}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A975C78B-238B-4D21-8425-7B124F49BAA2}
+	EndGlobalSection
+EndGlobal
